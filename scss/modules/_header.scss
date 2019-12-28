@@ -1,0 +1,95 @@
+
+.header {
+    padding: 6rem 2rem;
+    
+    &__grid {
+        max-width: 1280px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        
+    }
+    
+    &__grid-cell {
+        
+    }
+    
+    &__grid-cell--one {
+        
+    }
+    
+    &__grid-cell--two {
+        
+    }
+    
+    &__heading {
+        color: $black-100;
+        text-transform: uppercase;
+        padding: 1em 0;
+        background-image: url(../img/brush.png);
+        background-repeat: no-repeat;
+        background-position: bottom;
+        margin-bottom: 2em;
+    }
+    
+    &__heading-one {
+        display: block;
+        font-weight: 200;
+    }
+    
+    &__heading-two {
+        display: block;
+        font-weight: 700;
+    }
+    
+    &__summary {
+        font-size: 1.375em;
+        margin-bottom: .75em;
+        font-weight: 300;
+    }
+    
+    &__button {
+        display: inline-block;
+        margin-top: 4em;
+        text-transform: uppercase;
+        padding: .75em 1.25em;
+        background-color: $gray-700;
+        color: #fff;
+        font-size: 1.25em;
+        font-weight: 700;
+        border-radius: 99em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 12em;
+    }
+    
+    &__button-text {
+        
+    }
+    
+    &__svg {
+        width: 1.2em;
+        height: 1.2em;
+        fill: #fff;
+        margin-left: .5em;
+        transform: translateY(-1px);
+    }
+    
+    
+    &__image {
+        width: 100%;
+        /* temporary -- just resize actual img if needed */
+        transform: scale(1.15);
+        transform-origin: top;
+        height: auto;
+        display: block;
+        position: relative;
+        z-index: 100;
+    }
+    
+    
+}
+
+

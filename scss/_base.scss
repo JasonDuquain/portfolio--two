@@ -1,0 +1,70 @@
+:root {
+	box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+*, ::before, ::after {
+    box-sizing: inherit;
+    text-decoration: none;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+	outline: none;
+}
+
+body {
+    font-size: 100%;
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.45; /* this is from the 1.25 type scale */
+    color: $gray-text;
+}
+
+a {
+    color: inherit;
+}
+
+/* less vivid red for active links */
+a:active {
+    color: rgb(191, 43, 88);
+}
+
+
+/***** type-scale ratio 1.25 *****/
+
+h1, h2, h3, h4 {
+    margin: 2.75rem 0 1rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    line-height: 1.15;
+}
+
+p {
+    margin-bottom: 1.25em;
+}
+
+h1 {
+  font-size: 3.052em;
+}
+
+h2 {
+    font-size: 2.441em;
+}
+
+h3 {
+    font-size: 1.953em;
+}
+
+h4 {
+    font-size: 1.563em;
+}
+
+h5 {
+    font-size: 1.25em;
+}
+
+small, .text_small {
+    font-size: 0.8em;
+}
+
+
+
