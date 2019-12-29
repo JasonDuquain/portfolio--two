@@ -8,6 +8,31 @@ let rootElement = document.documentElement;
 let body = document.body;
 
 
+/****** sticky header *******/
+
+
+/*** consider using the animation that rotates the nav on scroll up and down **/
+
+
+
+
+let nav = document.querySelector('.nav');
+let hdrImage = document.querySelector('.header__image');
+
+
+
+
+window.addEventListener('scroll', (e) => {
+    if (hdrImage.getBoundingClientRect().bottom <= 0) {
+        nav.classList.add('sticky')
+    } else {
+        nav.classList.remove('sticky')
+    }
+})
+
+
+
+
 /*******  HEADER/HERO ANIMATION  ******/
 
 let tl = gsap.timeline();
@@ -15,9 +40,7 @@ var headingOneBefore = CSSRulePlugin.getRule('.header__heading-one::before');
 var headingTwoBefore = CSSRulePlugin.getRule('.header__heading-two::before');
 
 
-
 function init() {
-    
     tl.to([headingOneBefore, headingTwoBefore], {stagger: 0.4, duration: 1.2, cssRule: {scaleY: 0}})
     .fromTo('.header__summary', {
         opacity: 0, 
@@ -43,7 +66,6 @@ function init() {
     }, {
         backgroundImage: 'url(../img/brush.png)',
     }, "<")
-
 }
 
 /* change to main .header if the header__grid has issues */
@@ -53,6 +75,128 @@ window.addEventListener("load", function(event) {
 });
 
 
+/*******  INTRO HEADER ANIMATION  ******/
+let introHeadings = document.querySelectorAll('.intro__beauty, .intro__usability');
 
+let tlTwo = gsap.timeline();
+
+tlTwo.fromTo('.intro__beauty', {
+    opacity: 0,
+    x: '-300px',
+    y: '-50%'
+}, {
+    opacity: 1,
+    x: 0,
+    y: '-50%',
+    translateY: '-50%',
+    duration: 1.2
+})
+tlTwo.fromTo('.intro__usability', {
+    opacity: 0,
+    x: '350px',
+    y: '-60%'
+}, {
+    opacity: 1,
+    x: '45%',
+    y: '-60%',
+    duration: 1.2
+}, "<")
+
+
+if ("IntersectionObserver" in window) {
+    const appearOptions = {
+        threshold: 1
+    };
+    
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            /* i had issues embedding the tweens in here so i just am controlling play/pause and putting tweens outside the observing code..see rodrigo and mikels 1st two posts here: https://greensock.com/forums/topic/20831-svg-tweenmax-and-intersection-observer */
+            
+            if (!entry.isIntersecting) {
+                tlTwo.pause(0);
+            } else {
+                tlTwo.play();
+                observer.unobserve(entry.target);
+            }
+        })
+    }, appearOptions)
+    
+    introHeadings.forEach((el) => observer.observe(el)) 
+    
+} else {
+    /*** Fallback for older browsers ****/
+    
+}
+
+
+
+
+/*******  INTRO COLORED ICONS ANIMATION  ******/
+let introIconSects = document.querySelectorAll('.intro__sect')
+
+
+const tweenOne = gsap.fromTo(introIconSects[0], {
+    opacity: 0,
+    y: '100'
+}, {
+    opacity: 1,
+    y: 0,
+    duration: 2
+})
+const tweenTwo = gsap.fromTo(introIconSects[1], {
+    opacity: 0,
+    y: '100'
+}, {
+    opacity: 1,
+    y: 0,
+    duration: 2
+})
+const tweenThree = gsap.fromTo(introIconSects[2], {
+    opacity: 0,
+    y: '100'
+}, {
+    opacity: 1,
+    y: 0,
+    duration: 2
+})
+
+
+if ("IntersectionObserver" in window) {
+    const appearOptions = {
+        threshold: 1
+    };
+    
+    const observerTwo = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            
+            if (!entry.isIntersecting && entry.target.classList.contains('intro__sect--one')) {
+                tweenOne.pause(0);
+            } else if (entry.isIntersecting && entry.target.classList.contains('intro__sect--one')) {
+                tweenOne.play();
+                observerTwo.unobserve(entry.target);
+            }
+            
+            if (!entry.isIntersecting && entry.target.classList.contains('intro__sect--two')) {
+                tweenTwo.pause(0);
+            } else if (entry.isIntersecting && entry.target.classList.contains('intro__sect--two')) {
+                tweenTwo.play();
+                observerTwo.unobserve(entry.target);
+            }
+            
+            if (!entry.isIntersecting && entry.target.classList.contains('intro__sect--three')) {
+                tweenThree.pause(0);
+            } else if (entry.isIntersecting && entry.target.classList.contains('intro__sect--three')) {
+                tweenThree.play();
+                observerTwo.unobserve(entry.target);
+            }
+        })
+    }, appearOptions)
+    
+    introIconSects.forEach((el) => observerTwo.observe(el)) 
+    
+} else {
+    /*** Fallback for older browsers ****/
+    
+}
 
 
