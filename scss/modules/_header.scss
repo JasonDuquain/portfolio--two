@@ -1,6 +1,7 @@
 
 .header {
     padding: 6rem 2rem;
+    overflow: hidden;
     
     &__grid {
         max-width: 1280px;
@@ -8,6 +9,9 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         align-items: center;
+        
+        
+        visibility: hidden;
         
     }
     
@@ -36,11 +40,37 @@
     &__heading-one {
         display: block;
         font-weight: 200;
+        position: relative;
+        
+        &::before {
+            content: "";
+            position: absolute;
+            background-color: #fff;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            transform-origin: 100% 0;
+        }
     }
     
     &__heading-two {
         display: block;
         font-weight: 700;
+        position: relative;
+        
+        &::before {
+            content: "";
+            position: absolute;
+            background-color: #fff;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            transform-origin: 100% 0;
+        }
     }
     
     &__summary {
@@ -54,7 +84,7 @@
         margin-top: 4em;
         text-transform: uppercase;
         padding: .75em 1.25em;
-        background-color: $gray-700;
+        background-color: $purple;
         color: #fff;
         font-size: 1.25em;
         font-weight: 700;
@@ -63,6 +93,11 @@
         align-items: center;
         justify-content: center;
         width: 12em;
+        transition: background-color 350ms ease-in;
+        
+        &:hover, &:focus {
+           background-color: lighten($purple, 15%); 
+        }
     }
     
     &__button-text {

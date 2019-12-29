@@ -29,6 +29,11 @@
         text-transform: uppercase;
         position: relative;
         padding-bottom: .25em;
+        transition: all 300ms ease-out;
+        
+        &:hover, &:focus {
+            color: $purple;
+        }
 
         &::after {
             content: "";
@@ -37,11 +42,11 @@
             left: 50%;
             right: 50%;
             height: 2px;
-            background-color: currentColor;
+            background-color: $purple;
             transition: all 350ms ease-out;
         }
         
-        &:hover::after {
+        &:hover::after, &:focus::after {
             left: 0;
             right: 0;
         }

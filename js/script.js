@@ -4,7 +4,55 @@
 
 
 
-let docElement = document.documentElement;
+let rootElement = document.documentElement;
 let body = document.body;
+
+
+/*******  HEADER/HERO ANIMATION  ******/
+
+let tl = gsap.timeline();
+var headingOneBefore = CSSRulePlugin.getRule('.header__heading-one::before');
+var headingTwoBefore = CSSRulePlugin.getRule('.header__heading-two::before');
+
+
+
+function init() {
+    
+    tl.to([headingOneBefore, headingTwoBefore], {stagger: 0.4, duration: 1.2, cssRule: {scaleY: 0}})
+    .fromTo('.header__summary', {
+        opacity: 0, 
+        y: 100,
+        ease: 'power1'
+    }, {
+        opacity: 1,
+        y: 0,
+        ease: 'power4',
+        duration: .7
+    }, "<.4")
+    .fromTo(['.header__button', '.header__image'], {
+        opacity: 0,
+        x: '600px'
+    }, {
+        opacity: 1,
+        x: 0,
+        duration: 1,
+        ease: 'power4.out'
+    }, "<.6")
+    .fromTo('.header__heading', {
+        backgroundImage: 'none'
+    }, {
+        backgroundImage: 'url(../img/brush.png)',
+    }, "<")
+
+}
+
+/* change to main .header if the header__grid has issues */
+window.addEventListener("load", function(event) {
+  gsap.set(".header__grid", {autoAlpha:1})
+  init(); 
+});
+
+
+
 
 
