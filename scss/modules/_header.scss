@@ -3,6 +3,9 @@
     padding: 6rem 2rem;
     overflow: hidden;
     
+    /* no need to use calc and multiply times 1px as the getPropertyValue pull the px */
+    margin-top: var(--navheight);
+    
     &__grid {
         max-width: 1280px;
         margin: 0 auto;

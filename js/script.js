@@ -8,27 +8,27 @@ let rootElement = document.documentElement;
 let body = document.body;
 
 
-/****** sticky header *******/
-
-
-/*** consider using the animation that rotates the nav on scroll up and down **/
-
-
-
+/****** rotating header *******/
 
 let nav = document.querySelector('.nav');
-let hdrImage = document.querySelector('.header__image');
+let header = document.querySelector('.header');
+
+let styles = window.getComputedStyle(nav);
+let navHeight = styles.getPropertyValue('height');
+header.style.setProperty('--navheight', navHeight)
 
 
-
-
-window.addEventListener('scroll', (e) => {
-    if (hdrImage.getBoundingClientRect().bottom <= 0) {
-        nav.classList.add('sticky')
-    } else {
-        nav.classList.remove('sticky')
-    }
-})
+/* https://stackoverflow.com/questions/31223341/detecting-scroll-direction */
+var lastScrollTop = 0;
+window.addEventListener("scroll", function(){ // or 
+   var st = window.pageYOffset || document.documentElement.scrollTop; 
+   if (st > lastScrollTop) {
+      nav.classList.add('is--scrolling');
+   } else {
+      nav.classList.remove('is--scrolling');
+   }
+   lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
+}, false);
 
 
 

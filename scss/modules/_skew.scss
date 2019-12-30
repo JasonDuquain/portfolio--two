@@ -1,0 +1,80 @@
+
+
+.skew {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    transform: skewY(-15deg);
+    
+    &__cell {
+        padding: 8em 2em;
+        color: #fff;
+        text-align: center;
+    }
+    
+    &__cell > * {
+        /* issues with skewing the grid or the cells */
+        transform: skewY(15deg);
+        
+    }
+    
+    &__cell--one {
+        background-color: $red;
+    }
+    
+    &__cell--two {
+        background-color: $black;
+    }
+    
+    &__cell--three {
+        background-color: $purple;
+    }
+    
+    &__cell--one.animate {
+        
+        & .skew__icon {
+            transform: translateY(0px) skewY(15deg);
+            transition: all 800ms;
+        }
+        
+        
+    }
+    
+    &__circle {
+        width: 5em;
+        height: 5em;
+        background-color: #000;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 2em auto;
+    }
+    
+    &__svg {
+        width: 3em;
+        height: 3em;
+        fill: #fff;
+    }
+    
+    &__icon {
+        transform: translateY(100px) skewY(15deg);
+    }
+    
+    &__heading {
+        color: #fff;
+        text-transform: uppercase;
+        font-weight: 600;
+        margin-bottom: .75em;
+    }
+    
+    &__summary {
+        line-height: 2;
+        font-size: 1.375em;
+        margin: 1em 0;
+        font-weight: 300;
+        color: #fff;
+    }
+    
+    
+    
+}

@@ -1,7 +1,23 @@
 
-
 .nav {
     padding: 1rem 2rem;
+    box-shadow: 1px 1px 3px 0 rgba($purple,0.5),
+                -1px 0 3px 0 rgba($purple,0.5);
+    background-color: rgba(255,255,255,.85);
+    
+    transform-origin: top center;
+    transition: transform 900ms ease-out;
+    transform: perspective(525px) rotateX(0deg);
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 500;
+    
+    &.is--scrolling {
+        transform: perspective(525px) rotateX(-140deg);
+    }
+    
     
     &__list {
         max-width: 1280px;
@@ -53,14 +69,7 @@
         
     }
     
-    &.sticky {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 500;
-        background-color: rgba(255,255,255,.5)
-    }
+    
     
     
 }
