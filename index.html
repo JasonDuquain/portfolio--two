@@ -7,12 +7,11 @@
 	<meta name="description" content="DESC HERE SEO">
 	<meta name="format-detection" content="telephone=no">  
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,700|Roboto:300,400,700&display=swap" rel="stylesheet">
-   
-    <!-- ASK ON STACK OVERFLOW HOW TO COMBINE INTO THE LINK STATEMENT ABOVE --> 
     <link href="https://fonts.googleapis.com/css?family=Parisienne&text=%26&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
    
    <nav class="nav">
@@ -21,7 +20,7 @@
                <a href="index.html" class="nav__link">Home</a>
            </li>
            <li class="nav__item">
-               <a href="#experience" class="nav__link">Experience</a>
+               <a href="#experience" class="nav__link">About</a>
            </li>
            <li class="nav__item nav__item-logo">
                <a href="#" class="nav__link"><img class="nav__logo" src="img/logo.jpg" alt="logo"></a>
@@ -105,42 +104,87 @@
        
    </section>
    
-    
-    <section class="projects">
-            
-            
-            
-    </section>
+   <section class="about">
+     
+      <div class="intro__grid-cell_wrap">
+          <div class="intro__ampersand about__ampersand">&amp;</div>  
+          <h1 class="intro__beauty about__beauty">Skills</h1>  
+          <h1 class="intro__usability about__usability">Experience</h1>
+      </div> 
+      
+      
+       <div class="about__wrap">
+            <ul class="about__list">
+                <li class="about__item">
+                    <a href="#one" class="about__link about__link--current">
+                        About Me
+                    </a>
+                </li>
+                <li class="about__item">
+                    <a href="#two" class="about__link">
+                        Skills
+                    </a>
+                </li>
+                <li class="about__item">
+                    <a href="#three" class="about__link">
+                        Experience
+                    </a>
+                </li>
+            </ul>
+            <div class="about__sect-wrap">
+                <div class="about__sect about__sect--visible" data-id="one">
+                    SECT ONE
+                </div>
+                <div class="about__sect" data-id="two">
+                    SECT TWO TWO
+                </div>
+                <div class="about__sect" data-id="three">
+                    SECT THREEE THREEE
+                </div>
+            </div>  
+             
+          
+       </div> 
+       
+   </section>
     
     <section class="skew">
        <div class="skew__cell skew__cell--one">
-           <div class="skew__circle">
-               <svg class="skew__svg skew__svg--one">
-                   <use xlink:href="img/sprite.svg#icon-diamond" />
-               </svg>
+           <div class="skew__cell-wrap">
+                 <div class="skew__circle skew__circle--one">
+                    <svg class="skew__svg skew__svg--one">
+                       <use xlink:href="img/sprite.svg#icon-rocket" />
+                    </svg>
+                </div>
+                <h3 class="skew__heading">Fast</h3>
+                <p class="skew__summary">Your Project will be executed  quickly and delivered on time.</p>
            </div>
-           <h3 class="skew__heading">Fast</h3>
-           <p class="skew__summary">Your Project will be executed quickly and delivered on time.</p>
        </div>
        <div class="skew__cell skew__cell--two">
-           <div class="skew__circle">
-              <svg class="skew__svg skew__svg--two">
-                 <use xlink:href="img/sprite.svg#icon-diamond" />
-              </svg>
+           <div class="skew__cell-wrap">
+               <div class="skew__circle skew__circle--two">
+                  <svg class="skew__svg skew__svg--two">
+                     <use xlink:href="img/sprite.svg#icon-lab" />
+                  </svg>
+               </div>
+               <h3 class="skew__heading">Sophistication</h3>
+               <p class="skew__summary">Current design trends will apply to your project construction.</p>
            </div>
-           <h3 class="skew__heading">Sophistication</h3>
-           <p class="skew__summary">Current design trends will apply to your project construction.</p>
        </div>
        <div class="skew__cell skew__cell--three">
-           <div class="skew__circle">
-              <svg class="skew__svg skew__svg--three">
-                 <use xlink:href="img/sprite.svg#icon-diamond" />
-              </svg>
+           <div class="skew__cell-wrap">
+               <div class="skew__circle skew__circle--three">
+                  <svg class="skew__svg skew__svg--three">
+                     <use xlink:href="img/sprite.svg#icon-waves" />
+                  </svg>
+               </div>
+               <h3 class="skew__heading">Fluidity</h3>
+               <p class="skew__summary">Clean and easy-to-use design that a good site should have.</p>
            </div>
-           <h3 class="skew__heading">Fluidity</h3>
-           <p class="skew__summary">Clean and easy-to-use design that a good site should have.</p>
        </div>
     </section>
+    
+    <section class="projects" style="padding: 600px 0;"></section>
     
     <script src="js/gsap.min.js"></script>
     <script src="js/CSSRulePlugin.min.js"></script>

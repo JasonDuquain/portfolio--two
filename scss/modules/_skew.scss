@@ -6,7 +6,7 @@
     transform: skewY(-15deg);
     
     &__cell {
-        padding: 8em 2em;
+        padding: 10em 2em;
         color: #fff;
         text-align: center;
     }
@@ -14,7 +14,6 @@
     &__cell > * {
         /* issues with skewing the grid or the cells */
         transform: skewY(15deg);
-        
     }
     
     &__cell--one {
@@ -29,16 +28,6 @@
         background-color: $purple;
     }
     
-    &__cell--one.animate {
-        
-        & .skew__icon {
-            transform: translateY(0px) skewY(15deg);
-            transition: all 800ms;
-        }
-        
-        
-    }
-    
     &__circle {
         width: 5em;
         height: 5em;
@@ -51,8 +40,8 @@
     }
     
     &__svg {
-        width: 3em;
-        height: 3em;
+        width: 2.5em;
+        height: 2.5em;
         fill: #fff;
     }
     

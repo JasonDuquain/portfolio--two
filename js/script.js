@@ -200,3 +200,71 @@ if ("IntersectionObserver" in window) {
 }
 
 
+/********** SKEW SECTION ANIMATION  ***********/
+
+let skewSects = document.querySelectorAll('.skew__cell-wrap');
+let skewCircles = document.querySelectorAll('.skew__circle');
+
+const tweenTwoOne = gsap.fromTo(skewSects[0], {
+    opacity: 0,
+    y: '100'
+}, {
+    opacity: 1,
+    y: 0,
+    duration: 2
+})
+const tweenTwoTwo = gsap.fromTo(skewSects[1], {
+    opacity: 0,
+    y: '100'
+}, {
+    opacity: 1,
+    y: 0,
+    duration: 2
+})
+const tweenTwoThree = gsap.fromTo(skewSects[2], {
+    opacity: 0,
+    y: '100'
+}, {
+    opacity: 1,
+    y: 0,
+    duration: 2
+})
+
+if ("IntersectionObserver" in window) {
+    const appearOptions = {
+        threshold: 1
+    };
+    
+    const observerThree = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            
+            if (!entry.isIntersecting && entry.target.classList.contains('skew__circle--one')) {
+                tweenTwoOne.pause(0);
+            } else if (entry.isIntersecting && entry.target.classList.contains('skew__circle--one')) {
+                tweenTwoOne.play();
+                observerThree.unobserve(entry.target);
+            }
+            
+            if (!entry.isIntersecting && entry.target.classList.contains('skew__circle--two')) {
+                tweenTwoTwo.pause(0);
+            } else if (entry.isIntersecting && entry.target.classList.contains('skew__circle--two')) {
+                tweenTwoTwo.play();
+                observerThree.unobserve(entry.target);
+            }
+            
+            if (!entry.isIntersecting && entry.target.classList.contains('skew__circle--three')) {
+                tweenTwoThree.pause(0);
+            } else if (entry.isIntersecting && entry.target.classList.contains('skew__circle--three')) {
+                tweenTwoThree.play();
+                observerThree.unobserve(entry.target);
+            }
+        })
+    }, appearOptions)
+    
+    skewCircles.forEach((el) => observerThree.observe(el)) 
+    
+} else {
+    /*** Fallback for older browsers ****/
+    
+}
+
