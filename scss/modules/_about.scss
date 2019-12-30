@@ -18,13 +18,13 @@
         color: $black-100;
     }
     
-    
     &__wrap {
         margin-top: 8rem;
     }
     
     &__list {
-        
+        display: flex;
+        justify-content: space-around;
     }
     
     &__item {
@@ -32,11 +32,34 @@
     }
     
     &__link {
+        display: inline-block;
+        position: relative;
+        font-family: 'Montserrat', sans-serif;
+        color: $black-100;
+        font-size: 1.953em;
+        font-weight: 200;
+        text-transform: uppercase;
         
+        &::after {
+            position: absolute;
+            content: "";
+            left: 50%;
+            right: 50%;
+            bottom: 0;
+            height: 1px;
+            background-color: currentColor;
+            transition: all 350ms ease-out;
+            
+        }
+        
+        &:hover::after {
+            left: 0;
+            right: 0;
+        }
     }
     
     &__link--current {
-        
+        color: red;
     }
     
     
@@ -46,16 +69,108 @@
     }
     
     &__sect {
-        
+        display: none;
     }
     
     &__sect--visible {
+       display: block; 
+    }
+    
+    &__sect-about {
         
     }
     
     
     
     
+    &__progress {
+        position: relative;
+        display: inline-block;
+        padding: 0;
+        text-align: center;
+    }
+
+    &__progress > li {
+        font-family: Lato;
+        color: #93A2AC;
+        font-weight: 100;
+        display: inline-block;
+        position: relative;
+        text-align: center;
+        margin: 2em;
+    }
+
+    &__progress > li:before {
+        font-weight: 400;
+        position: absolute;
+        content: attr(data-name);
+        width: 100%;
+        bottom: -2rem;
+    }
+
+    /*
+    &__progress > li:after {
+        position: absolute;
+        content: attr(data-percent);
+        width: 100%;
+        top: 3.7rem;
+        left: 0;
+        font-size: 2rem;
+        text-align: center;
+    }
+    */
+
+    [class*=percent] {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    &__progress svg {
+        width: 10rem;
+        height: 10rem;
+    }
+
+    &__progress svg:nth-child(2) {
+        position: absolute;
+        left: 0;
+        top: 0;
+        transform: rotate(-90deg);
+    }
+
+    &__progress svg:nth-child(2) path {
+        fill: none;
+        stroke-width: 25;
+        stroke-dasharray: 629;
+        stroke: rgba(255,255,255,.9);
+        animation: load 5s linear;
+    }
+
+    
+    
+    
+  
     
 }
+
+
+@keyframes load { 
+
+    0% {
+        stroke-dashoffset: 0;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
 

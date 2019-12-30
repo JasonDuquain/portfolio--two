@@ -207,7 +207,7 @@ let skewCircles = document.querySelectorAll('.skew__circle');
 
 const tweenTwoOne = gsap.fromTo(skewSects[0], {
     opacity: 0,
-    y: '100'
+    y: '120'
 }, {
     opacity: 1,
     y: 0,
@@ -215,7 +215,7 @@ const tweenTwoOne = gsap.fromTo(skewSects[0], {
 })
 const tweenTwoTwo = gsap.fromTo(skewSects[1], {
     opacity: 0,
-    y: '100'
+    y: '120'
 }, {
     opacity: 1,
     y: 0,
@@ -223,7 +223,7 @@ const tweenTwoTwo = gsap.fromTo(skewSects[1], {
 })
 const tweenTwoThree = gsap.fromTo(skewSects[2], {
     opacity: 0,
-    y: '100'
+    y: '120'
 }, {
     opacity: 1,
     y: 0,
@@ -267,4 +267,94 @@ if ("IntersectionObserver" in window) {
     /*** Fallback for older browsers ****/
     
 }
+
+
+
+//////////////////*********************////////////////
+////******** STARTED USING ES5 ONLY FROM HERE DOWN ****////
+////**** UPDATE CODE ABOVE TO ONLY USE ES5 AND ADD SCROLL HANDLERS FOR THE 'ELSE' CLAUSES OF THE INTERSECTION OBSERVER CODE ****////////////////////
+//////////////////*********************////////////////
+
+
+
+/********** ABOUT SECTION FUNCTIONALITY  ***********/
+
+let aboutList = document.querySelector('.about__list');
+let aboutLinks = document.querySelectorAll('.about__link');
+let aboutSects = document.querySelectorAll('.about__sect');
+
+
+aboutList.addEventListener('click', function(e) {
+    e.preventDefault();
+    
+    if (e.target.classList.contains('about__link') && !e.target.classList.contains('about__link--current')) {
+        Array.prototype.slice.call(aboutLinks).forEach(function  (el, idx) {
+            el.classList.remove('about__link--current');
+            aboutSects[idx].classList.remove('about__sect--visible');
+            e.target.classList.add('about__link--current');
+
+            if (e.target.getAttribute('href').slice(1) === aboutSects[idx].getAttribute('data-id')) {
+                aboutSects[idx].classList.add('about__sect--visible');
+            }
+        });
+    }
+});
+
+
+
+
+
+/***** SKILLS ANIMATED CIRCLE %AGES ******/
+let percent = document.querySelector('.about__percent');
+let num = 0;
+
+let clearIt = setInterval(function() {
+    num += .26;
+    percent.textContent = num.toFixed(0) + '%';
+}, 100);
+
+
+let percentTwo = document.querySelector('.about__percent-two');
+let numTwo = 0;
+
+let clearItTwo = setInterval(function() {
+    numTwo += 1.45;
+    percentTwo.textContent = numTwo.toFixed(0) + '%';
+}, 100);
+
+
+let percentThree = document.querySelector('.about__percent-three');
+let numThree = 0;
+
+let clearItThree = setInterval(function() {
+    numThree += 1.16;
+    percentThree.textContent = numThree.toFixed(0) + '%';
+}, 100);
+
+
+let percentFour = document.querySelector('.about__percent-four');
+let numFour = 0;
+
+let clearItFour = setInterval(function() {
+    numFour += 2;
+    percentFour.textContent = numFour.toFixed(0) + '%';
+}, 100);
+
+
+setTimeout(() => {
+    clearInterval(clearIt); 
+    clearInterval(clearItTwo); 
+    clearInterval(clearItThree); 
+    clearInterval(clearItFour); 
+}, 5000);
+
+
+
+
+
+
+
+
+
+
 
