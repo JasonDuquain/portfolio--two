@@ -13,21 +13,41 @@ let body = document.body;
 let nav = document.querySelector('.nav');
 let header = document.querySelector('.header');
 
-let styles = window.getComputedStyle(nav);
-let navHeight = styles.getPropertyValue('height');
-header.style.setProperty('--navheight', navHeight)
+/*** CSS VARS unsupported in IE11 - fallback conditional code. See algorhythm's post in: https://stackoverflow.com/questions/26633258/how-can-i-detect-css-variable-support-with-javascript ***/
+/* MAKE SURE margin-top of the header is the same for either condtional branch...TEST in big 4 browsers */
+
+let computedStylesHeader = getComputedStyle(header);
+
+if (computedStylesHeader.getPropertyValue('margin-top') === '10px') {
+    console.log('css vars supported');
+    let styles = window.getComputedStyle(nav);
+    let navHeight = styles.getPropertyValue('height');
+    header.style.setProperty('--navheight', navHeight);
+} else {
+    console.log('css vars UNsupported -- this should run in IE');
+    let navHeight = nav.getBoundingClientRect().height;
+    header.style.setProperty('margin-top', navHeight + 'px');
+}
 
 
 /* https://stackoverflow.com/questions/31223341/detecting-scroll-direction */
 var lastScrollTop = 0;
-window.addEventListener("scroll", function(){ // or 
+window.addEventListener("scroll", function() { // or 
    var st = window.pageYOffset || document.documentElement.scrollTop; 
    if (st > lastScrollTop) {
       nav.classList.add('is--scrolling');
    } else {
       nav.classList.remove('is--scrolling');
    }
-   lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
+    
+    /************************************************/
+    /** make sure this is working now that it is ES5 ***/
+    /***********************************************/
+   lastScrollTop = function(st) {
+       0 ? 0 : st; // For Mobile or negative scrolling
+   }
+   
+   
 }, false);
 
 
@@ -108,8 +128,8 @@ if ("IntersectionObserver" in window) {
         threshold: 1
     };
     
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
+    const observer = new IntersectionObserver(function(entries, observer) {
+        entries.forEach(function(entry) {
             /* i had issues embedding the tweens in here so i just am controlling play/pause and putting tweens outside the observing code..see rodrigo and mikels 1st two posts here: https://greensock.com/forums/topic/20831-svg-tweenmax-and-intersection-observer */
             
             if (!entry.isIntersecting) {
@@ -121,78 +141,49 @@ if ("IntersectionObserver" in window) {
         })
     }, appearOptions)
     
-    introHeadings.forEach((el) => observer.observe(el)) 
+    Array.prototype.slice.call(introHeadings).forEach(function(el) {
+        observer.observe(el) 
+    }) 
     
 } else {
     /*** Fallback for older browsers ****/
     
 }
 
-
-
-
 /*******  INTRO COLORED ICONS ANIMATION  ******/
 let introIconSects = document.querySelectorAll('.intro__sect')
-
-
-const tweenOne = gsap.fromTo(introIconSects[0], {
-    opacity: 0,
-    y: '100'
-}, {
-    opacity: 1,
-    y: 0,
-    duration: 2
-})
-const tweenTwo = gsap.fromTo(introIconSects[1], {
-    opacity: 0,
-    y: '100'
-}, {
-    opacity: 1,
-    y: 0,
-    duration: 2
-})
-const tweenThree = gsap.fromTo(introIconSects[2], {
-    opacity: 0,
-    y: '100'
-}, {
-    opacity: 1,
-    y: 0,
-    duration: 2
-})
-
 
 if ("IntersectionObserver" in window) {
     const appearOptions = {
         threshold: 1
     };
     
-    const observerTwo = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
+    const observerTwo = new IntersectionObserver(function (entries, observer) {
+        Array.prototype.slice.call(entries).forEach(function(entry) {
+          
+          var el = entry.target;
             
-            if (!entry.isIntersecting && entry.target.classList.contains('intro__sect--one')) {
-                tweenOne.pause(0);
-            } else if (entry.isIntersecting && entry.target.classList.contains('intro__sect--one')) {
-                tweenOne.play();
-                observerTwo.unobserve(entry.target);
-            }
-            
-            if (!entry.isIntersecting && entry.target.classList.contains('intro__sect--two')) {
-                tweenTwo.pause(0);
-            } else if (entry.isIntersecting && entry.target.classList.contains('intro__sect--two')) {
-                tweenTwo.play();
-                observerTwo.unobserve(entry.target);
-            }
-            
-            if (!entry.isIntersecting && entry.target.classList.contains('intro__sect--three')) {
-                tweenThree.pause(0);
-            } else if (entry.isIntersecting && entry.target.classList.contains('intro__sect--three')) {
-                tweenThree.play();
-                observerTwo.unobserve(entry.target);
+            if (!entry.isIntersecting && el.classList.contains('intro__sect')) {
+                el.tween.pause(0);
+            } else if (entry.isIntersecting && el.classList.contains('intro__sect')) {
+                el.tween.play();
+                observerTwo.unobserve(el);
             }
         })
     }, appearOptions)
     
-    introIconSects.forEach((el) => observerTwo.observe(el)) 
+    Array.prototype.slice.call(introIconSects).forEach(function(el) {
+      el.tween = gsap.fromTo(el, {
+        opacity: 0,
+        y: 100
+      }, {
+        opacity: 1,
+        y: 0,
+        duration: 2
+      })
+      
+      observerTwo.observe(el);
+    });
     
 } else {
     /*** Fallback for older browsers ****/
@@ -201,17 +192,20 @@ if ("IntersectionObserver" in window) {
 
 
 /********** SKEW SECTION ANIMATION  ***********/
+/* this code uses skewSects and skewCircles so it cannot be shortened like the code above..plus there are delays on two of the tweens */
 
 let skewSects = document.querySelectorAll('.skew__cell-wrap');
 let skewCircles = document.querySelectorAll('.skew__circle');
 
+/* REMEMBER -- the delays are one the lowest cell and the 2nd lowest cell..so the cell with heading 'FLUIDITY' is the highest (skewSects[2]) and does not have a delay */
 const tweenTwoOne = gsap.fromTo(skewSects[0], {
     opacity: 0,
     y: '120'
 }, {
     opacity: 1,
     y: 0,
-    duration: 2
+    duration: 2,
+    delay: 1.5
 })
 const tweenTwoTwo = gsap.fromTo(skewSects[1], {
     opacity: 0,
@@ -219,7 +213,8 @@ const tweenTwoTwo = gsap.fromTo(skewSects[1], {
 }, {
     opacity: 1,
     y: 0,
-    duration: 2
+    duration: 2,
+    delay: .75
 })
 const tweenTwoThree = gsap.fromTo(skewSects[2], {
     opacity: 0,
@@ -235,8 +230,10 @@ if ("IntersectionObserver" in window) {
         threshold: 1
     };
     
-    const observerThree = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
+    const observerThree = new IntersectionObserver(function(entries, observer) {
+        Array.prototype.slice.call(entries).forEach(function(entry) {
+            
+            console.log(entry)
             
             if (!entry.isIntersecting && entry.target.classList.contains('skew__circle--one')) {
                 tweenTwoOne.pause(0);
@@ -248,6 +245,10 @@ if ("IntersectionObserver" in window) {
             if (!entry.isIntersecting && entry.target.classList.contains('skew__circle--two')) {
                 tweenTwoTwo.pause(0);
             } else if (entry.isIntersecting && entry.target.classList.contains('skew__circle--two')) {
+                
+                console.log('why wasnt this working');
+                /* it shows 0.999811 for intersectionRatio???? */
+                
                 tweenTwoTwo.play();
                 observerThree.unobserve(entry.target);
             }
@@ -261,20 +262,14 @@ if ("IntersectionObserver" in window) {
         })
     }, appearOptions)
     
-    skewCircles.forEach((el) => observerThree.observe(el)) 
+    Array.prototype.slice.call(skewCircles).forEach(function(el) {
+        observerThree.observe(el)
+    }); 
     
 } else {
     /*** Fallback for older browsers ****/
     
 }
-
-
-
-//////////////////*********************////////////////
-////******** STARTED USING ES5 ONLY FROM HERE DOWN ****////
-////**** UPDATE CODE ABOVE TO ONLY USE ES5 AND ADD SCROLL HANDLERS FOR THE 'ELSE' CLAUSES OF THE INTERSECTION OBSERVER CODE ****////////////////////
-//////////////////*********************////////////////
-
 
 
 /********** ABOUT SECTION FUNCTIONALITY and SKILLS ANIMATED CIRCLE %AGES ***********/
@@ -284,17 +279,9 @@ let aboutLinks = document.querySelectorAll('.about__link');
 let aboutSects = document.querySelectorAll('.about__sect');
 
 let percent = document.querySelector('.about__percent');
-let num = 0;
-
-
 let percentTwo = document.querySelector('.about__percent-two');
-let numTwo = 0;
-
 let percentThree = document.querySelector('.about__percent-three');
-let numThree = 0;
-
 let percentFour = document.querySelector('.about__percent-four');
-let numFour = 0;
 
 
 aboutList.addEventListener('click', function(e) {
@@ -314,6 +301,14 @@ aboutList.addEventListener('click', function(e) {
     
     
     if (e.target.classList.contains('about__link-skills')) {
+        
+        if (!sessionStorage.getItem('animate')) {
+
+        let num = 0;
+        let numTwo = 0;
+        let numThree = 0;
+        let numFour = 0;
+        
         let clearIt = setInterval(function() {
             num += 4.5;
             percent.textContent = num.toFixed(0) + '%';
@@ -341,14 +336,34 @@ aboutList.addEventListener('click', function(e) {
             clearInterval(clearItThree); 
             clearInterval(clearItFour); 
         }, 2000);
+            
+        } else {
+            
+            /* code to keep animation from running but make sure the strokes and numbers are in place */
+            let svgPaths = document.querySelectorAll('.about__progress svg:nth-child(2) path');
+            Array.prototype.slice.call(svgPaths).forEach(function(el) {
+                /* setting animation play state to paused keeps the strokes from appearing */
+                el.style.animation = 'none';
+            })
+            
+            percent.textContent = '90%';
+            percentTwo.textContent = '76%';
+            percentThree.textContent = '54%';
+            percentFour.textContent = '40%';
+        }
+
         
+        sessionStorage.setItem('animate', 'once');
         
     }
     
 });
 
 
-
+//////////////////*********************////////////////
+////******** KEEP USING ES5 ONLY  ****////
+////**** UPDATE CODE ABOVE TO ADD SCROLL HANDLERS FOR THE 'ELSE' CLAUSES OF ANY INTERSECTION OBSERVER CODE ****////////////////////
+//////////////////*********************////////////////
 
 
 

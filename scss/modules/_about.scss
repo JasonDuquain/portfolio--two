@@ -3,19 +3,22 @@
 .about {
     padding: 20rem 2rem;
     max-width: 1280px;
-    margin: 0 auto;
+    margin: 0 auto 10rem auto;
     
     &__ampersand {
         color: $purple;
+        opacity: .25;
     }
     
     
     &__beauty{
         color: $black-100;
+        font-weight: 700;
     }
     
     &__usability {
         color: $black-100;
+        font-weight: 200;
     }
     
     &__wrap {
@@ -25,6 +28,8 @@
     &__list {
         display: flex;
         justify-content: space-around;
+        padding: 1.5rem 0;
+        background-color: $purple;
     }
     
     &__item {
@@ -35,7 +40,7 @@
         display: inline-block;
         position: relative;
         font-family: 'Montserrat', sans-serif;
-        color: $black-100;
+        color: #fff;
         font-size: 1.953em;
         font-weight: 200;
         text-transform: uppercase;
@@ -59,13 +64,25 @@
     }
     
     &__link--current {
-        color: red;
+        color: $aqua;
+        
+        &::after {
+            position: absolute;
+            content: "";
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 1px;
+            background-color: currentColor;
+            transition: all 350ms ease-out;
+        }
     }
     
     
     
     &__sect-wrap {
-        
+        padding: 2rem;
+        border: 1px solid $purple;
     }
     
     &__sect {
@@ -88,6 +105,8 @@
         display: inline-block;
         padding: 0;
         text-align: center;
+        width: 100%;
+        margin: 0 auto;
     }
 
     &__progress > li {
@@ -101,11 +120,13 @@
     }
 
     &__progress > li:before {
+        font-size: 1.25em;
+        color: $purple;
         font-weight: 400;
         position: absolute;
         content: attr(data-name);
         width: 100%;
-        bottom: -2rem;
+        bottom: -3rem;
     }
 
     /*
@@ -121,6 +142,8 @@
     */
 
     [class*=percent] {
+        font-size: 1.25em;
+        color: $purple;
         position: absolute;
         top: 50%;
         left: 50%;
