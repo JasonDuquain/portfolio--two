@@ -277,11 +277,24 @@ if ("IntersectionObserver" in window) {
 
 
 
-/********** ABOUT SECTION FUNCTIONALITY  ***********/
+/********** ABOUT SECTION FUNCTIONALITY and SKILLS ANIMATED CIRCLE %AGES ***********/
 
 let aboutList = document.querySelector('.about__list');
 let aboutLinks = document.querySelectorAll('.about__link');
 let aboutSects = document.querySelectorAll('.about__sect');
+
+let percent = document.querySelector('.about__percent');
+let num = 0;
+
+
+let percentTwo = document.querySelector('.about__percent-two');
+let numTwo = 0;
+
+let percentThree = document.querySelector('.about__percent-three');
+let numThree = 0;
+
+let percentFour = document.querySelector('.about__percent-four');
+let numFour = 0;
 
 
 aboutList.addEventListener('click', function(e) {
@@ -298,55 +311,49 @@ aboutList.addEventListener('click', function(e) {
             }
         });
     }
+    
+    
+    if (e.target.classList.contains('about__link-skills')) {
+        let clearIt = setInterval(function() {
+            num += 4.5;
+            percent.textContent = num.toFixed(0) + '%';
+        }, 100);
+        
+        let clearItTwo = setInterval(function() {
+            numTwo += 3.8;
+            console.log(numTwo)
+            percentTwo.textContent = numTwo.toFixed(0) + '%';
+        }, 100);
+        
+        let clearItThree = setInterval(function() {
+            numThree += 2.7;
+            percentThree.textContent = numThree.toFixed(0) + '%';
+        }, 100);
+        
+        let clearItFour = setInterval(function() {
+            numFour += 2;
+            percentFour.textContent = numFour.toFixed(0) + '%';
+        }, 100);
+
+        setTimeout(function() {
+            clearInterval(clearIt); 
+            clearInterval(clearItTwo); 
+            clearInterval(clearItThree); 
+            clearInterval(clearItFour); 
+        }, 2000);
+        
+        
+    }
+    
 });
 
 
 
 
 
-/***** SKILLS ANIMATED CIRCLE %AGES ******/
-let percent = document.querySelector('.about__percent');
-let num = 0;
-
-let clearIt = setInterval(function() {
-    num += .26;
-    percent.textContent = num.toFixed(0) + '%';
-}, 100);
 
 
-let percentTwo = document.querySelector('.about__percent-two');
-let numTwo = 0;
 
-let clearItTwo = setInterval(function() {
-    numTwo += 1.45;
-    percentTwo.textContent = numTwo.toFixed(0) + '%';
-}, 100);
-
-
-let percentThree = document.querySelector('.about__percent-three');
-let numThree = 0;
-
-let clearItThree = setInterval(function() {
-    numThree += 1.16;
-    percentThree.textContent = numThree.toFixed(0) + '%';
-}, 100);
-
-
-let percentFour = document.querySelector('.about__percent-four');
-let numFour = 0;
-
-let clearItFour = setInterval(function() {
-    numFour += 2;
-    percentFour.textContent = numFour.toFixed(0) + '%';
-}, 100);
-
-
-setTimeout(() => {
-    clearInterval(clearIt); 
-    clearInterval(clearItTwo); 
-    clearInterval(clearItThree); 
-    clearInterval(clearItFour); 
-}, 5000);
 
 
 
