@@ -2,7 +2,84 @@
 
 .projects {
     
+    background-color: $gray-bg;
+    margin: -20rem auto 0 auto;
+    padding: 50rem 0;
     
-    padding: 800px 0;
+    
+    &__wrap {
+        max-width: 1280px;
+        
+    }
+    
+    &__heading {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        
+        color: $black-100;
+        text-transform: uppercase;
+        padding: 1rem 4rem 2rem 0;;
+        background-image: url(../img/brush.png);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+        margin-right: 4rem;
+    }
+    
+    &__heading-one {
+        display: block;
+        font-weight: 200;
+        position: relative;
+    }
+    
+    &__heading-two {
+        display: block;
+        font-weight: 700;
+        position: relative;
+    }
+    
+    &__grid {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr;
+        margin-top: 10rem;
+    }
+    
+    &__grid-cell--one {
+        padding: 2rem;
+    }
+    
+    &__grid-cell--two {
+        position: relative;
+        border-radius: .75rem;
+        box-shadow: 5px 5px 18px 3px rgba(0,0,0,.6);
+        overflow: hidden; 
+        
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -110%;
+            width: 100%;
+            height: 100%;
+            background-color: $black-100;
+            z-index: 50; // even tho the pseudo element is stacked  on top, this is needed to stop flicker when the img becomes opaque during the animation
+        }
+    }
+    
+    &__image--one {
+        width: 100%;
+        height: auto;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 }
+
+

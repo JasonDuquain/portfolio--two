@@ -233,8 +233,6 @@ if ("IntersectionObserver" in window) {
     const observerThree = new IntersectionObserver(function(entries, observer) {
         Array.prototype.slice.call(entries).forEach(function(entry) {
             
-            console.log(entry)
-            
             if (!entry.isIntersecting && entry.target.classList.contains('skew__circle--one')) {
                 tweenTwoOne.pause(0);
             } else if (entry.isIntersecting && entry.target.classList.contains('skew__circle--one')) {
@@ -246,7 +244,6 @@ if ("IntersectionObserver" in window) {
                 tweenTwoTwo.pause(0);
             } else if (entry.isIntersecting && entry.target.classList.contains('skew__circle--two')) {
                 
-                console.log('why wasnt this working');
                 /* it shows 0.999811 for intersectionRatio???? */
                 
                 tweenTwoTwo.play();
@@ -352,7 +349,6 @@ aboutList.addEventListener('click', function(e) {
             percentFour.textContent = '40%';
         }
 
-        
         sessionStorage.setItem('animate', 'once');
         
     }
@@ -366,10 +362,38 @@ aboutList.addEventListener('click', function(e) {
 //////////////////*********************////////////////
 
 
+/************* PROJECTS ANIMATIONS  ***************/
+let projectsCellTwo = document.querySelector('.projects__grid-cell--two');
+let projectsCellTwoBefore = CSSRulePlugin.getRule('.projects__grid-cell--two::before');
+let projectsImageOne = document.querySelector('.projects__image--one');
 
 
+let tlThree = gsap.timeline();
 
-
+tlThree.fromTo(projectsCellTwoBefore, {
+    cssRule: {
+        left: '-110%'
+    }
+}, {
+    cssRule: {
+        left: '110%'
+    },
+    duration: 1.2,
+    ease: 'linear'
+})
+tlThree.fromTo(projectsCellTwo, {
+     x: '-40px'
+}, {
+    x: 0,
+    duration: 1.4,
+    ease: Power4
+}, "<")
+.fromTo(projectsImageOne, {
+    visibility: 'hidden'
+}, {
+    visibility: 'visible',
+    duration: .1
+}, "<.6")
 
 
 

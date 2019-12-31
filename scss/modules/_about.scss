@@ -57,6 +57,10 @@
             
         }
         
+        &:active {
+           color: $aqua; 
+        }
+        
         &:hover::after {
             left: 0;
             right: 0;
