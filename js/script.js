@@ -221,6 +221,32 @@ const tweenTwoThree = gsap.fromTo(skewSects[2], {
     y: 0,
     duration: 2
 })
+const tweenTwoFour = gsap.fromTo(skewSects[3], {
+    opacity: 0,
+    y: '120'
+}, {
+    opacity: 1,
+    y: 0,
+    duration: 2,
+    delay: 1.5
+})
+const tweenTwoFive = gsap.fromTo(skewSects[4], {
+    opacity: 0,
+    y: '120'
+}, {
+    opacity: 1,
+    y: 0,
+    duration: 2,
+    delay: .75
+})
+const tweenTwoSix = gsap.fromTo(skewSects[5], {
+    opacity: 0,
+    y: '120'
+}, {
+    opacity: 1,
+    y: 0,
+    duration: 2
+})
 
 if ("IntersectionObserver" in window) {
     const appearOptions = {
@@ -253,6 +279,27 @@ if ("IntersectionObserver" in window) {
                 tweenTwoThree.play();
                 observerThree.unobserve(entry.target);
             }
+            
+            if (!entry.isIntersecting && entry.target.classList.contains('skew__circle--four')) {
+                tweenTwoFour.pause(0);
+            } else if (entry.isIntersecting && entry.target.classList.contains('skew__circle--four')) {
+                tweenTwoFour.play();
+                observerThree.unobserve(entry.target);
+            }
+            
+            if (!entry.isIntersecting && entry.target.classList.contains('skew__circle--five')) {
+                tweenTwoFive.pause(0);
+            } else if (entry.isIntersecting && entry.target.classList.contains('skew__circle--five')) {
+                tweenTwoFive.play();
+                observerThree.unobserve(entry.target);
+            }
+            
+            if (!entry.isIntersecting && entry.target.classList.contains('skew__circle--six')) {
+                tweenTwoSix.pause(0);
+            } else if (entry.isIntersecting && entry.target.classList.contains('skew__circle--six')) {
+                tweenTwoSix.play();
+                observerThree.unobserve(entry.target);
+            }
         })
     }, appearOptions)
     
@@ -272,6 +319,14 @@ let aboutList = document.querySelector('.about__list');
 let aboutLinks = document.querySelectorAll('.about__link');
 let aboutSects = document.querySelectorAll('.about__sect');
 
+let aboutSectsHeight = [];
+
+Array.prototype.slice.call(aboutSects).forEach(function(el, idx) {
+    aboutSectsHeight.push(el.scrollHeight);
+}); 
+
+console.log(aboutSectsHeight)
+
 let percent = document.querySelector('.about__percent');
 let percentTwo = document.querySelector('.about__percent-two');
 let percentThree = document.querySelector('.about__percent-three');
@@ -285,15 +340,17 @@ aboutList.addEventListener('click', function(e) {
         Array.prototype.slice.call(aboutLinks).forEach(function  (el, idx) {
             el.classList.remove('about__link--current');
             aboutSects[idx].classList.remove('about__sect--visible');
+            aboutSects[idx].style.height = 0;
             e.target.classList.add('about__link--current');
 
             if (e.target.getAttribute('href').slice(1) === aboutSects[idx].getAttribute('data-id')) {
                 aboutSects[idx].classList.add('about__sect--visible');
+                aboutSects[idx].style.height = aboutSectsHeight[idx] + 'px';
             }
         });
     }
     
-    
+    /**** MAKE SURE SVG CIRCLE ANIMATION ONLY RUNS ONCE ****/
     if (e.target.classList.contains('about__link-skills')) {
         
         if (!sessionStorage.getItem('animate')) {
@@ -302,23 +359,23 @@ aboutList.addEventListener('click', function(e) {
         let numTwo = 0;
         let numThree = 0;
         let numFour = 0;
-        
+            
         let clearIt = setInterval(function() {
             num += 4.5;
             percent.textContent = num.toFixed(0) + '%';
         }, 100);
-        
+
         let clearItTwo = setInterval(function() {
             numTwo += 3.8;
             console.log(numTwo)
             percentTwo.textContent = numTwo.toFixed(0) + '%';
         }, 100);
-        
+
         let clearItThree = setInterval(function() {
             numThree += 2.7;
             percentThree.textContent = numThree.toFixed(0) + '%';
         }, 100);
-        
+
         let clearItFour = setInterval(function() {
             numFour += 2;
             percentFour.textContent = numFour.toFixed(0) + '%';
@@ -330,6 +387,9 @@ aboutList.addEventListener('click', function(e) {
             clearInterval(clearItThree); 
             clearInterval(clearItFour); 
         }, 2000);
+            
+        
+        
             
         } else {
             
@@ -351,12 +411,6 @@ aboutList.addEventListener('click', function(e) {
     }
     
 });
-
-
-//////////////////*********************////////////////
-////******** KEEP USING ES5 ONLY  ****////
-////**** UPDATE CODE ABOVE TO ADD SCROLL HANDLERS FOR THE 'ELSE' CLAUSES OF ANY INTERSECTION OBSERVER CODE ****////////////////////
-//////////////////*********************////////////////
 
 
 /************* PROJECTS ANIMATIONS  ***************/
@@ -395,6 +449,11 @@ tlThree.fromTo(projectsCellTwo, {
 .set(projectsCellTwo, { backgroundColor: '#000' })
 
 
+
+//////////////////*********************////////////////
+////******** KEEP USING ES5 ONLY  ****////
+////**** UPDATE CODE ABOVE TO ADD SCROLL HANDLERS FOR THE 'ELSE' CLAUSES OF ANY INTERSECTION OBSERVER CODE ****////////////////////
+//////////////////*********************////////////////
 
 
 

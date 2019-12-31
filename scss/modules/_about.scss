@@ -1,15 +1,18 @@
 
 
 .about {
-    padding: 20rem 2rem;
-    max-width: 1280px;
-    margin: 0 auto 10rem auto;
+    padding: 20rem 0 26rem 0;
+    
+    &__grid-cell_wrap {
+        max-width: 1280px;
+        margin: 0 auto 10rem auto;
+        padding: 0 2rem;
+    }
     
     &__ampersand {
         color: $purple;
         opacity: .25;
     }
-    
     
     &__beauty{
         color: $black-100;
@@ -21,23 +24,38 @@
         font-weight: 200;
     }
     
+    /* full width */
+    &__bleed {
+        background-image: url(../img/about-bleed.jpg);
+        background-repeat: no-repeat; 
+        min-height: 390px;
+    }
+    
     &__wrap {
-        margin-top: 8rem;
+        max-width: 1280px;
+        margin: -5.85rem auto 0 auto;
     }
     
     &__list {
         display: flex;
-        justify-content: space-around;
-        padding: 1.5rem 0;
-        background-color: $purple;
+        justify-content: space-between;
+        padding: 0;
+        
     }
     
     &__item {
+        background-color: $purple;
+        transition: all 300ms ease-out;
+        
+        &:hover, &:focus {
+            background-color: $aqua;
+        }
         
     }
     
     &__link {
-        display: inline-block;
+        padding: 1.5rem 2rem;
+        display: block;
         position: relative;
         font-family: 'Montserrat', sans-serif;
         color: #fff;
@@ -45,56 +63,56 @@
         font-weight: 200;
         text-transform: uppercase;
         
-        &::after {
+        &::before {
             position: absolute;
             content: "";
             left: 50%;
             right: 50%;
-            bottom: 0;
-            height: 1px;
-            background-color: currentColor;
+            top: -4px;
+            height: 4px;
+            background-color: $aqua;
             transition: all 350ms ease-out;
-            
         }
         
         &:active {
-           color: $aqua; 
+           color: #000; 
         }
         
-        &:hover::after {
+        /*&:hover::after {
             left: 0;
             right: 0;
-        }
+        }*/
     }
     
     &__link--current {
-        color: $aqua;
+        color: #000;
+        background-color: #fff;
         
-        &::after {
-            position: absolute;
-            content: "";
+        &::before {
             left: 0;
             right: 0;
-            bottom: 0;
-            height: 1px;
-            background-color: currentColor;
-            transition: all 350ms ease-out;
         }
     }
     
     
     
     &__sect-wrap {
-        padding: 2rem;
-        border: 1px solid $purple;
+        padding: 2rem 0;
     }
     
     &__sect {
-        display: none;
+        //display: none;
+        height: 0;
+        overflow: hidden;
+        //padding: 0;
+        transition: all 450ms ease-out;
     }
     
     &__sect--visible {
-       display: block; 
+       //display: block; 
+        height: auto;
+        /* padding is cutting off the content */
+        //padding: 4rem 0;
     }
     
     &__sect-about {
@@ -171,12 +189,11 @@
         stroke-width: 25;
         stroke-dasharray: 629;
         stroke: rgba(255,255,255,.9);
-        animation: load 2000ms linear;
+        
+        /* added a delay to wait for the sect height transition, which is 450ms..so not sure why 1000ms is working but this might need to be adjusted */
+        animation: load 2000ms 1000ms linear;
     }
 
-     
-  
-    
 }
 
 
