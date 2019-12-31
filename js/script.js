@@ -41,13 +41,10 @@ window.addEventListener("scroll", function() { // or
    }
     
     /************************************************/
-    /** make sure this is working now that it is ES5 ***/
+    /** that is not a Fat Arrow is is lt or eq!! ***/
     /***********************************************/
-   lastScrollTop = function(st) {
-       0 ? 0 : st; // For Mobile or negative scrolling
-   }
-   
-   
+    lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
+
 }, false);
 
 
@@ -394,7 +391,8 @@ tlThree.fromTo(projectsCellTwo, {
     visibility: 'visible',
     duration: .1
 }, "<.6")
-
+/* setbackground color to black to the hover animation works */
+.set(projectsCellTwo, { backgroundColor: '#000' })
 
 
 
