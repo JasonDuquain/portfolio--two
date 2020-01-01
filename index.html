@@ -17,13 +17,13 @@
    <nav class="nav">
        <ul class="nav__list">
            <li class="nav__item">
-               <a href="index.html" class="nav__link">Home</a>
+               <a href="#hdr" class="nav__link nav__link-no-home">Home</a>
            </li>
            <li class="nav__item">
-               <a href="#experience" class="nav__link">About</a>
+               <a href="#about" class="nav__link">About</a>
            </li>
            <li class="nav__item nav__item-logo">
-               <a href="#" class="nav__link"><img class="nav__logo" src="img/logo.jpg" alt="logo"></a>
+               <a href="./index.html" class="nav__link nav__link-logo nav__link-not-active nav__link-no-home"><img class="nav__logo" src="img/logo.jpg" alt="creative full stack logo"></a>
            </li>
            <li class="nav__item">
                <a href="#projects" class="nav__link">Projects</a>
@@ -34,7 +34,7 @@
        </ul>
    </nav>
    
-   <header class="header">
+   <header class="header" id="hdr">
        <div class="header__grid">
            <div class="header__grid-cell header__grid-cell--one">
                <h1 class="header__heading">
@@ -108,7 +108,7 @@
      
       <div class="intro__grid-cell_wrap about__grid-cell_wrap">
           <div class="intro__ampersand about__ampersand">&amp;</div>  
-          <h1 class="intro__beauty about__beauty">Skills</h1>  
+          <h1 id="about" class="intro__beauty about__beauty">Skills</h1>  
           <h1 class="intro__usability about__usability">Experience</h1>
       </div> 
       
@@ -292,7 +292,7 @@
         
         <div class="projects__wrap">
            
-           <h1 class="projects__heading">
+           <h1 id="projects" class="projects__heading">
                <span class="projects__heading-one">Projects</span>
                <span class="projects__heading-two">My work</span>
            </h1>
@@ -383,6 +383,17 @@
        </div>
     </section>
     
+    <section class="contact"></section>
+    
+    <footer class="footer">
+        <div class="year">2019</div>
+    </footer>
+    
+    <a href="#hdr" class="js-btt-btn" title="back to top">
+        <svg class="js-btt-btn-icon">
+            <use xlink:href="img/sprite.svg#icon-arrow-up"></use>
+        </svg>
+    </a>
     
     
     <script src="js/gsap.min.js"></script>

@@ -31,6 +31,9 @@ if (computedStylesHeader.getPropertyValue('margin-top') === '10px') {
 
 
 /* https://stackoverflow.com/questions/31223341/detecting-scroll-direction */
+
+var isScrolling;
+
 var lastScrollTop = 0;
 window.addEventListener("scroll", function() { // or 
    var st = window.pageYOffset || document.documentElement.scrollTop; 
@@ -44,9 +47,62 @@ window.addEventListener("scroll", function() { // or
     /** that is not a Fat Arrow is is lt or eq!! ***/
     /***********************************************/
     lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
+    
+    /* detect when a user has stopped scrolling: https://gomakethings.com/detecting-when-a-visitor-has-stopped-scrolling-with-vanilla-javascript/ */
+    window.clearTimeout( isScrolling );
+    
+    isScrolling = setTimeout(function() {
+        
+		/* scrolling has stopped */
+        nav.classList.remove('is--scrolling');
+	}, 66);
 
 }, false);
 
+
+
+
+/**** HIGHLIGHT NAV SECTS ON CLICK ****/
+let navList = document.querySelector('.nav__list');
+
+/** this list does not include the home nav item or the logo as I do not want those highlighted on click */
+let navLinks = document.querySelectorAll('.nav__link:not(.nav__link-not-active)');
+let sects = Array.from(document.querySelectorAll('section.about, section.projects, section.contact'));
+
+    
+navList.addEventListener('click', function(e) {
+    if (e.target.classList.contains('nav__link') && !e.target.classList.contains('nav__link-not-active')) {
+        
+        console.log('why')
+        
+        Array.prototype.slice.call(navLinks).forEach(function(el) {
+            el.classList.remove('is--active');
+            e.target.classList.add('is--active')
+        })
+    }
+});
+
+/**** HIGHLIGHT NAV SECTS ON SCROLL TO THAT SECT ****/
+
+/** this list does not include the home nav item as I do not want that one highlighted on scroll */
+let navLinksNoHome = document.querySelectorAll('.nav__link:not(.nav__link-no-home)');
+
+window.addEventListener('scroll', function(e) {
+    Array.prototype.slice.call(navLinksNoHome).forEach(function(el, idx) {
+        let sect = sects[idx].getBoundingClientRect();
+        if (sect.top <= 150 && sect.bottom >= 150) {
+            el.classList.add('is--active');
+        } else {
+            el.classList.remove('is--active');
+            
+            /** remove the link from 'home' nav **/
+            let homey = document.querySelector('.nav__link-no-home');
+            if (homey.classList.contains('is--active')) {
+                homey.classList.remove('is--active')
+            }
+        }
+    })
+})
 
 
 
@@ -325,8 +381,6 @@ Array.prototype.slice.call(aboutSects).forEach(function(el, idx) {
     aboutSectsHeight.push(el.scrollHeight);
 }); 
 
-console.log(aboutSectsHeight)
-
 let percent = document.querySelector('.about__percent');
 let percentTwo = document.querySelector('.about__percent-two');
 let percentThree = document.querySelector('.about__percent-three');
@@ -458,6 +512,20 @@ tlThree.fromTo(projectsCellTwo, {
 
 
 
+/********   BACK TO TOP BTN  *********/
+let docElement = document.documentElement;
+let docBody = document.body;
+let bttBtn = document.querySelector('.js-btt-btn');
+let highestHeight = docElement.scrollHeight;
 
+//changed from document to window - still not working on mobile
+window.addEventListener('scroll', function(e) {
+    (window.pageYOffset > (highestHeight / 8)) ? bttBtn.classList.add('active') : bttBtn.classList.remove('active');
+});
+
+
+/********  COPYRIGHT DATE *******/
+let year = document.querySelector('.year');
+year.textContent = new Date().getFullYear();
 
 

@@ -47,9 +47,14 @@
         padding-bottom: .25em;
         transition: all 300ms ease-out;
         
-        &:hover, &:focus {
+        &:hover {
             color: $purple;
         }
+        
+        /** focus is conflicing with .is--active class */
+        /*&:focus {
+            color: $aqua;
+        }*/
 
         &::after {
             content: "";
@@ -62,14 +67,25 @@
             transition: all 350ms ease-out;
         }
         
-        &:hover::after, &:focus::after {
+        &:hover::after {
             left: 0;
             right: 0;
         }
         
     }
+
     
-    
-    
-    
+}
+
+.is--active {
+    &::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: $purple;
+            transition: all 350ms ease-out;
+        }
 }
