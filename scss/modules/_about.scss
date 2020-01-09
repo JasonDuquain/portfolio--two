@@ -22,6 +22,10 @@
     &__usability {
         color: $black-100;
         font-weight: 200;
+        
+        /**** adjust this so it is closer to the 'SKILLS' line..this uses the same animation as the into sect ***/
+        margin-top: -.8em;
+        margin-left: -1em;
     }
     
     /* full width */
@@ -33,7 +37,7 @@
     
     &__wrap {
         max-width: 1280px;
-        margin: -5.85rem auto 0 auto;
+        margin: -5.8rem auto 0 auto;
     }
     
     &__list {
@@ -70,7 +74,7 @@
             right: 50%;
             top: -4px;
             height: 4px;
-            background-color: $aqua;
+            background-color: $purple;
             transition: all 350ms ease-out;
         }
         
@@ -119,9 +123,7 @@
         
     }
     
-    
-    
-    
+
     &__progress {
         position: relative;
         display: inline-block;

@@ -43,7 +43,7 @@
                </h1>
                <p class="header__summary">Have you heard the phrase &quot;Everyone needs a website?&quot;</p>
                <p class="header__summary">Yeah, you need one too!</p>
-               <a href="#" class="header__button">
+               <a href="#contact" class="header__button">
                    <span class="header__button-text">Contact Me</span>
                    <svg class="header__svg">
                        <use xlink:href="img/sprite.svg#icon-commenting" />
@@ -297,34 +297,72 @@
                <span class="projects__heading-two">My work</span>
            </h1>
            
+           <p class="projects__summary">Get to know some of the work I have done for my clients.
+           </p> 
+           
            <div class="projects__grid">
                
                <div class="projects__grid-cell projects__grid-cell--one">
-                   <p>
-                       Websites hosted on Amazon Web Services (AWS) and all images are hosted by Cloudinary.
-                       
-                       The site is optimized for desktop, laptop, tablet, and mobile. All sites are tested on major browsers (including older versions of each to ensure proper functionality). 
-                        
-                       Utilizes <a href="https://moz.com/" style="text-decoration: underline">SEO best practices</a> and Google Analytics. 
-                       
-                       Current score from google's <a href="https://developers.google.com/web/tools/lighthouse/#devtools" style="text-decoration: underline">website performance audit tool</a> is 97/100.  
-                       
-                       Security is ensured by using secured SSL certificates which assures any information you send or get through the site is private and the site is authentic. 
-                       
-                       Design frameworks are used and automation is used where applicable to speed up development. 
-                       
-                       10% of all proceeds will be donated to the charity of your choice.
-                       
-                       
-                   </p>
-               </div>
-               <div class="projects__grid-cell projects__grid-cell--two">
                    <a href="https://elmandbelle.com" class="projects__link" target="_blank" rel="noopener">
-                       <img src="img/Elm%20and%20Belle%20Hair%20Salon.jpg" alt="Elm and Belle website screenshot" class="projects__image--one">
+                       <img src="img/Elm%20and%20Belle%20Hair%20Salon.jpg" alt="Elm and Belle website screenshot" class="projects__image projects__image--one">
                    
                        <div class="projects__caption">
                           <div class="wrappy">
                                <h3 class="projects__cell-heading">Elm &amp; Belle Salon</h3>
+                               <p class="projects__built">Built with:</p>
+                               <ul class="projects__list">
+                                   <li class="projects__item">HTML/CSS</li>
+                                   <li class="projects__item">Javascript</li>
+                                   <li class="projects__item">Greensock Animations</li>
+                               </ul>
+                              
+                          </div>
+                       </div>
+                   </a>
+               </div>
+               <div class="projects__grid-cell projects__grid-cell--two">
+                   <a href="http://parkwaypreschool.com" class="projects__link" target="_blank" rel="noopener">
+                       <img src="img/Parkway%20Preschool.jpg" alt="Parkway Presbyterian Preschool and Kindergarten website screenshot" class="projects__image projects__image--two">
+                   
+                       <div class="projects__caption">
+                          <div class="wrappy">
+                               <h3 class="projects__cell-heading">Parkway Preschool</h3>
+                               <p class="projects__built">Built with:</p>
+                               <ul class="projects__list">
+                                   <li class="projects__item">HTML/CSS</li>
+                                   <li class="projects__item">Javascript</li>
+                                   <li class="projects__item">Greensock Animations</li>
+                               </ul>
+                              
+                          </div>
+                       </div>
+                   </a>
+               </div>
+               <div class="projects__grid-cell projects__grid-cell--three">
+                   <a href="http://parkwaypreschool.com" class="projects__link" target="_blank" rel="noopener">
+                       <img src="img/events.jpg" alt="Parkway Presbyterian Preschool and Kindergarten website screenshot" class="projects__image projects__image--three">
+                   
+                       <div class="projects__caption">
+                          <div class="wrappy">
+                               <h3 class="projects__cell-heading">The Events Site</h3>
+                               <p class="projects__built">Built with:</p>
+                               <ul class="projects__list">
+                                   <li class="projects__item">HTML/CSS</li>
+                                   <li class="projects__item">Javascript</li>
+                                   <li class="projects__item">Greensock Animations</li>
+                               </ul>
+                              
+                          </div>
+                       </div>
+                   </a>
+               </div>
+               <div class="projects__grid-cell projects__grid-cell--four">
+                   <a href="http://parkwaypreschool.com" class="projects__link" target="_blank" rel="noopener">
+                       <img src="img/parlor.jpg" alt="Parkway Presbyterian Preschool and Kindergarten website screenshot" class="projects__image projects__image--four">
+                   
+                       <div class="projects__caption">
+                          <div class="wrappy">
+                               <h3 class="projects__cell-heading">Parlour</h3>
                                <p class="projects__built">Built with:</p>
                                <ul class="projects__list">
                                    <li class="projects__item">HTML/CSS</li>
@@ -386,7 +424,7 @@
     <section class="contact">
         <h1 id="contact" class="contact__heading">
             <span class="contact__heading-one">Contact</span>
-            <span class="contact__heading-two">About a project</span>
+            <span class="contact__heading-two">Send a message</span>
         </h1>
         
         <div class="form-wrapper">
@@ -415,17 +453,15 @@
                       Our <span class="contact-hdg-span">Hours</span>
                   </h3>
                   <ul class="contact-list list-two">
-                      <li class="contact-item">Monday to Friday</li>
-                      <li class="contact-item hours">9:00AM &ndash; 1:00PM</li>
-                      <li class="contact-item">Saturday and Sunday</li>
-                      <li class="contact-item hours">Closed</li>
+                      <li class="contact-item">10% of all proceeds will be donated to the charity of your choice.</li>
+                      
                   </ul>
               </div>
               
              </div>
         </div>
 
-        <div class="form kwes-form">
+        <div class="form">
           <form method="POST" action="">
             <p class="field field-text">
                 <label for="applicant-name">Name:</label>
@@ -484,13 +520,15 @@
         </div>
       </div>     
            
-          
-           
-           
+  
     </section>
     
     <footer class="footer">
-        <div class="year">2019</div>
+      <div class="footer__wrap">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo ipsam, vel? Atque veritatis, reiciendis perferendis saepe expedita velit esse laboriosam nam facilis libero ipsam optio architecto? Adipisci voluptatibus deleniti, sed.</p>
+          
+          <div class="year">2019</div>  
+      </div>
     </footer>
     
     <a href="#hdr" class="js-btt-btn" title="back to top">

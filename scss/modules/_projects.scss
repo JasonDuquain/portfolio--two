@@ -12,6 +12,17 @@
         
     }
     
+    &__summary {
+        line-height: 2;
+        font-size: 1.375em;
+        margin: 3em 4rem 3em 0;;
+        font-weight: 300;
+        color: $gray-700;
+        width: 100%; 
+        text-align: right;
+        padding-right: 4rem;
+    }
+    
     &__heading {
         display: flex;
         flex-direction: column;
@@ -42,14 +53,15 @@
     
     &__grid {
         display: grid;
-        grid-template-columns: 1.5fr 1fr;
+        grid-template-columns: 1fr 1.25fr;
+        align-items: center;
+        grid-gap: 1.5em;
         margin-top: 10rem;
     }
     
     &__grid-cell--one {
-        padding: 2rem;
+        //padding: 2rem;
     }
-    
     
     
     &__cell-heading {
@@ -90,11 +102,13 @@
         transition-delay: 0s; 
     }
     
-    &__grid-cell--two {
+    /** these must be listed individually in order to work with the GSAP CSSRulePlugin */
+    &__grid-cell {
         position: relative;
         border-radius: .75rem;
         box-shadow: 5px 5px 18px 3px rgba(0,0,0,.6);
-        overflow: hidden; 
+        overflow: hidden;
+        background-color: #000;
         
         &::before {
             content: "";
@@ -107,7 +121,7 @@
             z-index: 50; // even tho the pseudo element is stacked  on top, this is needed to stop flicker when the img becomes opaque during the animation
         }
         
-        &:hover .projects__image--one {
+        &:hover .projects__image {
             opacity: .3;
             transform: scale(1.15);
         }
@@ -157,6 +171,10 @@
 
     }
     
+    &__grid-cell--two, &__grid-cell--four {
+        transform: translateY(50%);
+    }
+    
     &__caption {
         position: absolute;
         bottom: 0;
@@ -192,7 +210,7 @@
         z-index: 19500;*/
     }
     
-    &__image--one {
+    &__image {
         width: 100%;
         height: auto;
         display: block;

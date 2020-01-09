@@ -18,7 +18,33 @@
     @include breakpoint (max-width $smaller-400) {
         padding: 5em 0;
     }
+    
+    &__heading {
+        display: flex;
+        flex-direction: column;
+        
+        color: $black-100;
+        text-transform: uppercase;
+        padding: 1rem 4rem 2rem 0;;
+        background-image: url(../img/brush.png);
+        background-repeat: no-repeat;
+        background-position: left bottom;
+        margin-bottom: 10rem;
+    }
+    
+    &__heading-one {
+        display: block;
+        font-weight: 700;
+        position: relative;
+    }
+    
+    &__heading-two {
+        display: block;
+        font-weight: 200;
+        position: relative;
+    }
 }
+
 
 .contacts {
     background-color: darken($purple, 10%);

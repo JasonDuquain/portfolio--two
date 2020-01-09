@@ -110,6 +110,12 @@ window.addEventListener('scroll', function(e) {
 
 /*******  HEADER/HERO ANIMATION  ******/
 
+/*** when the animation fails sporadically it is because this is not taking effect:
+
+tl.to([headingOneBefore, headingTwoBefore], {stagger: 0.4, duration: 1.2, cssRule: {scaleY: 0}})
+
+***/
+
 let tl = gsap.timeline();
 var headingOneBefore = CSSRulePlugin.getRule('.header__heading-one::before');
 var headingTwoBefore = CSSRulePlugin.getRule('.header__heading-two::before');
@@ -209,6 +215,7 @@ if ("IntersectionObserver" in window) {
 let introIconSects = document.querySelectorAll('.intro__sect')
 
 if ("IntersectionObserver" in window) {
+    
     const appearOptions = {
         threshold: 1
     };
@@ -306,9 +313,11 @@ const tweenTwoSix = gsap.fromTo(skewSects[5], {
     duration: 2
 })
 
+/** changed threshold to .95 to try to keep the entries animating that sometimes show 0.999811 for intersectionRatio ***/
+
 if ("IntersectionObserver" in window) {
     const appearOptions = {
-        threshold: 1
+        threshold: .95
     };
     
     const observerThree = new IntersectionObserver(function(entries, observer) {
@@ -324,6 +333,7 @@ if ("IntersectionObserver" in window) {
             if (!entry.isIntersecting && entry.target.classList.contains('skew__circle--two')) {
                 tweenTwoTwo.pause(0);
             } else if (entry.isIntersecting && entry.target.classList.contains('skew__circle--two')) {
+                
                 
                 /* it shows 0.999811 for intersectionRatio???? */
                 
@@ -347,6 +357,9 @@ if ("IntersectionObserver" in window) {
             
             if (!entry.isIntersecting && entry.target.classList.contains('skew__circle--five')) {
                 tweenTwoFive.pause(0);
+                
+                /* it shows 0.999811 for intersectionRatio???? */
+                
             } else if (entry.isIntersecting && entry.target.classList.contains('skew__circle--five')) {
                 tweenTwoFive.play();
                 observerThree.unobserve(entry.target);
@@ -473,40 +486,6 @@ aboutList.addEventListener('click', function(e) {
     
 });
 
-
-/************* PROJECTS ANIMATIONS  ***************/
-let projectsCellTwo = document.querySelector('.projects__grid-cell--two');
-let projectsCellTwoBefore = CSSRulePlugin.getRule('.projects__grid-cell--two::before');
-let projectsImageOne = document.querySelector('.projects__image--one');
-
-let tlThree = gsap.timeline();
-
-tlThree.fromTo(projectsCellTwoBefore, {
-    cssRule: {
-        left: '-110%'
-    }
-}, {
-    cssRule: {
-        left: '110%'
-    },
-    duration: 1.2,
-    ease: 'linear'
-})
-tlThree.fromTo(projectsCellTwo, {
-     x: '-40px'
-}, {
-    x: 0,
-    duration: 1.4,
-    ease: Power4
-}, "<")
-.fromTo(projectsImageOne, {
-    visibility: 'hidden'
-}, {
-    visibility: 'visible',
-    duration: .1
-}, "<.6")
-/* setbackground color to black to the hover animation works */
-.set(projectsCellTwo, { backgroundColor: '#000' })
 
 
 /*** HIGHLIGHT ICONS ON FORM ELEMENTS FOCUS ***/
